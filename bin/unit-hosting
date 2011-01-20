@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+# vim:set fileencoding=utf-8:
+$:.unshift(File.dirname(__FILE__) + '/../lib')
+require 'unit-hosting/cli'
+UnitHosting::CLI::run(ARGV)
+exit
+

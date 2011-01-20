@@ -1,7 +1,26 @@
 = unit-hosting
 
-Description goes here.
+This is a command to manage virtual servers on UnitHosting(http://www.unit-hosting.com).
 
+== Install
+
+ sudo gem install unit-hosting
+
+== Usage
+
+ unit-hosting [global options] command [command options] args..
+
+=== Global Options
+
+
+=== Commands
+
+* login
+* logout
+* vm create|destroy|boot|shutdown
+* group add|delete
+ 
+ 
 == Contributing to unit-hosting
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
