@@ -32,11 +32,20 @@ module UnitHosting
       getr("/logout")
     end
 
+    def group(id)
+      getr("/my/group/#{id}/info")
+      group = Group.new(id)
+      group.key  = page.at("span.api-key").text.to_s
+      group.name = page.at("span.group-name").text.to_s
+      group
+    end
+
     def groups
       getr("/my/group")
-      page.search("#server-groups .instance_id a").each { |i|
-        puts i.text.to_s
-      }
+      page.search("#server-groups .instance_id a").collect { |a|
+        group(a.text.to_s)
+      }.extend(Groups)
     end
+
   end
 end

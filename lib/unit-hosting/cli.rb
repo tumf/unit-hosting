@@ -19,7 +19,7 @@ module UnitHosting
         cmd_argv = @opt.order!(argv)
         cmd = cmd_argv.shift
         raise unless cmd
-        Commands.new(cmd_argv,@options).send(cmd)
+        Commands.new(cmd_argv,@options).send(cmd.sub(/:/,"_"))
       rescue =>e
         puts "Message: #{e}\n"
         usage
