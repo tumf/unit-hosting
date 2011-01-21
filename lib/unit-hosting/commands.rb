@@ -111,6 +111,7 @@ module UnitHosting
           ps["groups"] = gs.collect{ |g|
             unless g.key.empty?
               g.update if g.instance_id == group.instance_id
+              g
             end
           }.compact.extend(Groups)
         end
