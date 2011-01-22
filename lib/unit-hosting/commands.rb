@@ -10,36 +10,18 @@ require "unit-hosting/api"
 require "unit-hosting/agent"
 require "unit-hosting/cache"
 #require "unit-hosting/api"
+require "command-line-utils"
 
 module UnitHosting
-  COMMANDS = ["help","login","logout","update"]
-  class Commands
-
-    def initialize(cmd_options,options)
-      @options = options
-      @command_options = cmd_options
-      @help = false
+  class Commands < CommandLineUtils::Commands
+    # CommandLineUtils::COMMANDS += 
+    def initialize
+      super
+      @commands += ["login","logout","update","groups","group"]
       @agent = Agent.new
       @cache_file =  ENV['HOME']+"/.unit-hosting.cache"
       @cache = Cache.new(@cache_file)
 
-      @summery = ""
-      @banner = ""
-    end
-
-    def help
-      opt = OptionParser.new
-      opt.parse!(@command_options)
-      @summery = "Show command helps."
-      @banner = "command"
-      return opt if @help
-      @help = true
-      command = @command_options.shift
-      raise "Unknown command: " + command unless COMMANDS.include?(command)
-      opt = send(command)
-      puts "Summery: #{@summery}"
-      opt.banner="Usage: unit-hosting [options] #{command} #{@banner}"
-      puts opt
     end
 
     def login
