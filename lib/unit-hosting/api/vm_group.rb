@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# vim:set fileencoding=utf-8:
+# -*- coding: utf-8 -*-
 require 'unit-hosting/api/base'
 require 'unit-hosting/api/vm'
 
@@ -33,12 +33,3 @@ module UnitHosting
     end
   end
 end
-
-if $0 == __FILE__
-  pp  UnitHosting::VmGroup.load('tumf-sg-10').vm('tumf-vm-107')
-  exit
-  recipe = UnitHosting::VmRecipe.new
-  # recipe.
-end
-
-

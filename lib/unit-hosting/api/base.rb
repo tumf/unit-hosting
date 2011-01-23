@@ -1,10 +1,8 @@
 #!/usr/bin/env ruby
 # vim:set fileencoding=utf-8:
-require 'rubygems'
-require 'logger'
 require 'xmlrpc/client'
-require 'optparse'
 require 'rexml/document'
+require 'openssl'
 
 module UnitHosting
   module Api

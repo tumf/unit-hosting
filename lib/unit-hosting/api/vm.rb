@@ -1,8 +1,5 @@
 #!/usr/bin/env ruby
-# vim:set fileencoding=utf-8:
-require "rubygems"
-require 'mutter'
-
+# -*- coding: utf-8 -*-
 require 'unit-hosting/api/base'
 
 module UnitHosting

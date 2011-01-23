@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
-# vim:set fileencoding=utf-8:
-require 'unit-hosting/api/base'
+# -*- coding: utf-8 -*-
 module UnitHosting
   module Api
     class VmRecipe
