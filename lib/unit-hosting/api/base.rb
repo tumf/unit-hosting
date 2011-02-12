@@ -25,7 +25,7 @@ module UnitHosting
         self.new.load(instance_id)
       end
       def load(instance_id)
-        load_key(UnitHosting::keypath(instance_id))
+        load_key(UnitHosting::Api::keypath(instance_id))
       end
       def load_key(file)
         File::open(file) do |f|
