@@ -16,8 +16,8 @@ module UnitHosting
         server_call("vmGroup.getVms")
       end
       def vm_api_key instance_id
-        server_call("vmGroup.getVms").each do |vm|
-          return vm["api_key"] if vm[instance_id] == instance_id
+        vms.each do |vm|
+          return vm["api_key"] if vm["instance_id"] == instance_id
         end
       end
       # instance_idに紐づくvmを返す
