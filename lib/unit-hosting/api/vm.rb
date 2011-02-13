@@ -52,6 +52,16 @@ module UnitHosting
       def replicate name=""
         server_call("vm.replicate",{"display_name" => name})
       end
+      def plugVif network,device = nil
+        server_call("vm.plugVif",{"network_uuid" => network,"device" => device})
+      end
+      def getVifs
+        server_call("vm.getVifs")
+      end
+      def unplugVif vif_uuid
+        server_call("vm.unplugVif",{"vif_uuid" => vif_uuid})
+      end
+
     end
   end
 end

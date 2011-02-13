@@ -30,6 +30,11 @@ module UnitHosting
         return false if r["result"] != "success"
         r
       end
+
+      def networks
+        server_call("vmGroup.getNetworks")
+      end
+
     end
   end
 end
