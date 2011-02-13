@@ -20,6 +20,8 @@ module UnitHosting
         @server.instance_variable_get(:@http).
           instance_variable_get(:@ssl_context).
           instance_variable_set(:@verify_mode, OpenSSL::SSL::VERIFY_NONE)
+        yield self if block_given?
+        self
       end
       def self.load(instance_id)
         self.new.load(instance_id)
