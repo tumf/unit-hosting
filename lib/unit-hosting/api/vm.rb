@@ -55,7 +55,7 @@ module UnitHosting
       def plugVif network,device = nil
         server_call("vm.plugVif",{"network_uuid" => network,"device" => device})
       end
-      def getVifs
+      def vifs
         server_call("vm.getVifs")
       end
       def unplugVif vif_uuid
