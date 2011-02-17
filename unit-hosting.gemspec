@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{unit-hosting}
-  s.version = "0.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Yoshihiro TAKAHARA"]
-  s.date = %q{2011-02-13}
+  s.date = %q{2011-02-17}
   s.default_executable = %q{unit-hosting}
   s.description = %q{This is a command to manage virtual servers on UnitHosting(http://www.unit-hosting.com).}
   s.email = %q{y.takahara@gmail.com}
