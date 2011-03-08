@@ -1,9 +1,6 @@
 #!/usr/bin/env ruby
 # vim:set fileencoding=utf-8:
-require 'xmlrpc/client'
-require 'rexml/document'
-require 'openssl'
-
+require 'unit-hosting'
 module UnitHosting
   module Api
     def keypath instance_id
@@ -24,7 +21,9 @@ module UnitHosting
         self
       end
       def self.load(instance_id)
-        self.new.load(instance_id)
+        obj = self.new.load(instance_id)
+        yield obj if block_given?
+        obj
       end
       def load(instance_id)
         load_key(UnitHosting::Api::keypath(instance_id))

@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
-require 'command-line-utils'
 require 'unit-hosting/commands'
 module UnitHosting
   class CLI < CommandLineUtils::CLI

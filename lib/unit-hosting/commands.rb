@@ -1,16 +1,12 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
-require "rubygems"
-require "highline/import"
-
-require "keystorage"
+#require "rubygems"
 
 require "unit-hosting"
 require "unit-hosting/api"
 require "unit-hosting/agent"
 require "unit-hosting/cache"
-#require "unit-hosting/api"
-require "command-line-utils"
+
 
 module UnitHosting
   class Commands < CommandLineUtils::Commands
