@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{unit-hosting}
-  s.version = "0.1.2"
+  s.version = "0.1.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Yoshihiro TAKAHARA"]
-  s.date = %q{2011-02-17}
+  s.date = %q{2011-03-08}
   s.default_executable = %q{unit-hosting}
   s.description = %q{This is a command to manage virtual servers on UnitHosting(http://www.unit-hosting.com).}
   s.email = %q{y.takahara@gmail.com}
@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
     "README.rdoc"
   ]
   s.files = [
+    ".document",
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
@@ -44,7 +45,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/tumf/unit-hosting}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.5.0}
+  s.rubygems_version = %q{1.6.1}
   s.summary = %q{unit-hosting command line tool}
   s.test_files = [
     "test/helper.rb",
