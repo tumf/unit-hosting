@@ -3,7 +3,7 @@
 require "mechanize"
 
 module UnitHosting
-  UHURL = "https://www.unit-hosting.com"
+  UHURL = "https://cloud.unit-hosting.com"
   class Agent < Mechanize
     def initialize
       super
