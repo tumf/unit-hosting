@@ -13,7 +13,7 @@ module UnitHosting
         @instance_id = instance_id
         @api_key = api_key
         @server = XMLRPC::Client.
-          new_from_uri("https://www.unit-hosting.com/xmlrpc",nil,1000)
+          new_from_uri("https://cloud.unit-hosting.com/xmlrpc",nil,1000)
         @server.instance_variable_get(:@http).
           instance_variable_get(:@ssl_context).
           instance_variable_set(:@verify_mode, OpenSSL::SSL::VERIFY_NONE)

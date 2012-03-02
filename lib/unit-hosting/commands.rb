@@ -23,7 +23,7 @@ module UnitHosting
     def login
       opt = OptionParser.new
       opt.parse!(@command_options)
-      @summery = "Login to https://www.unit-hosting.com ."
+      @summery = "Login to https://cloud.unit-hosting.com ."
       @banner = ""
       return opt if @help
 
@@ -52,7 +52,7 @@ module UnitHosting
     def logout
       opt = OptionParser.new
       opt.parse!(@command_options)
-      @summery = "Logout from https://www.unit-hosting.com ."
+      @summery = "Logout from https://cloud.unit-hosting.com ."
       @banner = ""
       return opt if @help
       Keystorage.delete("unit-hosting")
