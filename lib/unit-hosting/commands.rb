@@ -55,7 +55,7 @@ module UnitHosting
       @summery = "Logout from https://www.unit-hosting.com ."
       @banner = ""
       return opt if @help
-      Keystorage.delete("bookscan")
+      Keystorage.delete("unit-hosting")
     end
 
     include UnitHosting::Api

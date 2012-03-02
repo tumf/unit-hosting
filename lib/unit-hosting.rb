@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'bundler/setup'
+
 require "highline/import"
 require "keystorage"
 require 'command-line-utils'
