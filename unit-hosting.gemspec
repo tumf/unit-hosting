@@ -4,15 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{unit-hosting}
-  s.version = "0.1.4"
+  s.name = "unit-hosting"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Yoshihiro TAKAHARA"]
-  s.date = %q{2011-03-08}
-  s.default_executable = %q{unit-hosting}
-  s.description = %q{This is a command to manage virtual servers on UnitHosting(http://www.unit-hosting.com).}
-  s.email = %q{y.takahara@gmail.com}
+  s.date = "2012-03-02"
+  s.description = "This is a command to manage virtual servers on UnitHosting(http://www.unit-hosting.com)."
+  s.email = "y.takahara@gmail.com"
   s.executables = ["unit-hosting"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -21,7 +20,6 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
     "Gemfile",
-    "Gemfile.lock",
     "LICENSE.txt",
     "README.rdoc",
     "Rakefile",
@@ -42,11 +40,11 @@ Gem::Specification.new do |s|
     "test/test_unit-hosting.rb",
     "unit-hosting.gemspec"
   ]
-  s.homepage = %q{http://github.com/tumf/unit-hosting}
+  s.homepage = "http://github.com/tumf/unit-hosting"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.1}
-  s.summary = %q{unit-hosting command line tool}
+  s.rubygems_version = "1.8.12"
+  s.summary = "unit-hosting command line tool"
   s.test_files = [
     "test/helper.rb",
     "test/test_unit-hosting.rb"
@@ -63,6 +61,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<progressbar>, [">= 0.9.0"])
       s.add_runtime_dependency(%q<httpclient>, [">= 2.1.6.1"])
       s.add_runtime_dependency(%q<command-line-utils>, [">= 0.0.1"])
+      s.add_runtime_dependency(%q<rdoc>, [">= 0"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
@@ -75,6 +74,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<progressbar>, [">= 0.9.0"])
       s.add_dependency(%q<httpclient>, [">= 2.1.6.1"])
       s.add_dependency(%q<command-line-utils>, [">= 0.0.1"])
+      s.add_dependency(%q<rdoc>, [">= 0"])
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
@@ -88,6 +88,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<progressbar>, [">= 0.9.0"])
     s.add_dependency(%q<httpclient>, [">= 2.1.6.1"])
     s.add_dependency(%q<command-line-utils>, [">= 0.0.1"])
+    s.add_dependency(%q<rdoc>, [">= 0"])
     s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
