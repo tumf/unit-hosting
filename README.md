@@ -8,7 +8,7 @@ Install
 
     sudo gem install unit-hosting
  
- > !!Rubygems
+ > **RubyGems.org**
  > https://rubygems.org/gems/unit-hosting
 
 Usage
