@@ -3,7 +3,7 @@ source "http://rubygems.org"
 # Example:
 #   gem "activesupport", ">= 2.3.5"
 gem 'mutter'
-gem 'keystorage', '> 0.1'
+gem "keystorage", "~> 0.4.13"
 gem 'mechanize', '>= 1.0.0'
 gem 'highline', '> 1.6'
 gem 'progressbar', '>= 0.9.0'
@@ -16,6 +16,5 @@ gem 'rdoc'
 group :development do
   gem "shoulda", ">= 0"
   gem "bundler"
-  gem "jeweler", "~> 1.5.2"
-  gem "rcov", ">= 0"
+  gem "jeweler", :git =>"git://github.com/emilsoman/jeweler.git"
 end
