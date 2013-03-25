@@ -24,7 +24,7 @@ module UnitHosting
 
     def login?
       getr("/dashboard")
-      /ログアウト/ =~ page.body # => OK
+      /ログアウト/ =~ page.body.force_encoding('utf-8') # => OK
     end
 
     def logout
