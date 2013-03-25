@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 require "mechanize"
+Encoding.default_external = Encoding::UTF_8
+Encoding.default_internal = Encoding::UTF_8
 
 module UnitHosting
   UHURL = "https://cloud.unit-hosting.com"
@@ -22,9 +24,14 @@ module UnitHosting
       submit(form)
     end
 
+    def page_body
+      body = page.body
+      body.force_encoding('utf-8') if body.respond_to? :force_encoding
+    end
+
     def login?
       getr("/dashboard")
-      /ログアウト/ =~ page.body.force_encoding('utf-8') # => OK
+      /ログアウト/ =~ page_body # => OK
     end
 
     def logout
