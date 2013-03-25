@@ -3,6 +3,8 @@ unit-hosting
 
 This is a command to manage virtual servers on UnitHosting(http://www.unit-hosting.com).
 
+[![Build Status](https://travis-ci.org/tumf/unit-hosting.png?branch=master)](https://travis-ci.org/tumf/unit-hosting)
+
 Install
 -------
 
