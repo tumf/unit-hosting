@@ -22,9 +22,10 @@ module UnitHosting
       submit(form)
     end
 
-    def page_body
+    def page_body enc='utf-8'
       body = page.body
-      body.force_encoding('utf-8') if body.respond_to? :force_encoding
+      body.force_encoding(enc) if body.respond_to?(:force_encoding)
+      body
     end
 
     def login?
