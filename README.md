@@ -22,6 +22,16 @@ Global Options
 ---------------
 
 
+Development
+-----------
+
+MySQLサーバの起動
+
+```
+sudo mysql.server start
+```
+
+
 Commands
 --------
 
