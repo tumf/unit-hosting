@@ -5,7 +5,7 @@ Unit Hosting support libs for Ruby
 [![Gem Version](https://badge.fury.io/rb/unit-hosting.png)](http://badge.fury.io/rb/unit-hosting)
 [![Code Climate](https://codeclimate.com/github/tumf/unit-hosting.png)](https://codeclimate.com/github/tumf/unit-hosting)
 [![Dependency Status](https://gemnasium.com/tumf/unit-hosting.png)](https://gemnasium.com/tumf/unit-hosting)
-[![Coverage Status](https://coveralls.io/repos/tumf/unit-hosting/badge.png)](https://coveralls.io/r/tumf/unit-hosting)
+[![Coverage Status](https://coveralls.io/repos/tumf/unit-hosting/badge.png?branch=master)](https://coveralls.io/r/tumf/unit-hosting?branch=master)
 
 This is a command to manage virtual servers on UnitHosting(http://www.unit-hosting.com).
 
