@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 require 'helper'
+=begin
 class TestUnitHosting < Test::Unit::TestCase
   context "Agent" do
     should "access" do
@@ -9,3 +10,4 @@ class TestUnitHosting < Test::Unit::TestCase
     end
   end
 end
+=end
