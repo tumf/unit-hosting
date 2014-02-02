@@ -1,6 +1,12 @@
 unit-hosting
 =============
 
+[![Build Status](https://travis-ci.org/tumf/unit-hosting.png?branch=master)](https://travis-ci.org/tumf/unit-hosting)
+[![Gem Version](https://badge.fury.io/rb/unit-hosting.png)](http://badge.fury.io/rb/unit-hosting)
+[![Code Climate](https://codeclimate.com/github/tumf/unit-hosting.png)](https://codeclimate.com/github/tumf/unit-hosting)
+[![Dependency Status](https://gemnasium.com/tumf/unit-hosting.png)](https://gemnasium.com/tumf/unit-hosting)
+[![Coverage Status](https://coveralls.io/repos/tumf/unit-hosting/badge.png)](https://coveralls.io/r/tumf/unit-hosting)
+
 This is a command to manage virtual servers on UnitHosting(http://www.unit-hosting.com).
 
 [![Build Status](https://travis-ci.org/tumf/unit-hosting.png?branch=master)](https://travis-ci.org/tumf/unit-hosting)
@@ -22,16 +28,6 @@ Global Options
 ---------------
 
 
-Development
------------
-
-MySQLサーバの起動
-
-```
-sudo mysql.server start
-```
-
-
 Commands
 --------
 
@@ -48,6 +44,4 @@ See Also
 Copyright
 ---------
 
-Copyright (c) 2011 Yoshihiro TAKAHARA. See LICENSE.txt for
-further details.
-
+Copyright (c) 2011-2014 Yoshihiro TAKAHARA. See LICENSE.txt for further details.
