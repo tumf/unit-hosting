@@ -1,5 +1,5 @@
-unit-hosting
-=============
+Unit Hosting support libs for Ruby
+==================================
 
 [![Build Status](https://travis-ci.org/tumf/unit-hosting.png?branch=master)](https://travis-ci.org/tumf/unit-hosting)
 [![Gem Version](https://badge.fury.io/rb/unit-hosting.png)](http://badge.fury.io/rb/unit-hosting)
@@ -12,7 +12,7 @@ This is a command to manage virtual servers on UnitHosting(http://www.unit-hosti
 Install
 -------
 
-    sudo gem install unit-hosting
+    [sudo] gem install unit-hosting
  
  > **RubyGems.org**
  > https://rubygems.org/gems/unit-hosting
@@ -20,7 +20,7 @@ Install
 Usage
 -----
 
- unit-hosting [global options] command [command options] args..
+    unit-hosting [global options] command [command options] args..
 
 Global Options
 ---------------
