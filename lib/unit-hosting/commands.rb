@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 #require "rubygems"
 
-require "unit-hosting"
 require "unit-hosting/api"
 require "unit-hosting/agent"
 require "unit-hosting/cache"

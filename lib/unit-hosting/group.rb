@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 require 'rubygems'
 require 'mutter'
+require 'unit-hosting/api'
 
 module UnitHosting
   module Groups

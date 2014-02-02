@@ -1,17 +1,17 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 require "mechanize"
-
+require "unit-hosting/group"
 module UnitHosting
-  UHURL = "https://cloud.unit-hosting.com"
   class Agent < Mechanize
-    def initialize
-      super
+    def initialize endpoint = nil
+      @endpoint = endpoint || "https://cloud.unit-hosting.com"
+      super()
       max_history = 0
     end
 
     def getr path
-      get(UHURL + path)
+      get(@endpoint + path)
     end
     
     def login id,password
