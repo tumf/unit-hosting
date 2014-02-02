@@ -4,7 +4,8 @@ source "http://rubygems.org"
 #   gem "activesupport", ">= 2.3.5"
 gem 'mutter'
 gem "keystorage", "~> 0.4.13"
-gem 'mechanize'
+gem 'mechanize', '2.6.0'
+gem 'nokogiri','~> 1.5.9'
 gem 'highline', '> 1.6'
 gem 'progressbar', '>= 0.9.0'
 gem 'httpclient', '>= 2.1.6.1'
