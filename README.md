@@ -9,6 +9,12 @@ Unit Hosting support libs for Ruby
 
 This is a command to manage virtual servers on UnitHosting(http://www.unit-hosting.com).
 
+Ruby versions 1.8.7, 1.9.2, 1.9.3, 2.0.0
+
+> ** GitHub **
+> https://github.com/tumf/unit-hosting
+
+
 Install
 -------
 
