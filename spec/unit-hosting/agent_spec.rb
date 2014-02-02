@@ -16,7 +16,7 @@ describe UnitHosting::Agent do
   describe "#login" do
     before {
       stub_request(:get, @endpoint + '/login').
-      to_return(:status =>200, :headers =>{content_type: 'text/html; charset=utf-8'},
+      to_return(:status =>200, :headers =>{:content_type =>'text/html; charset=utf-8'},
                 :body => <<HTML)
 <form action="/login" method="post">
  <input type="hidden" name="_csrf_token" value="" />
@@ -30,7 +30,7 @@ HTML
       before {
         stub_request(:post, @endpoint + "/login").
         with(:body => {"_csrf_token"=>"", "password"=>"test-password", "username"=>"test-username"}).
-        to_return(:status =>200, :body => "OK", :headers => {content_type: 'text/html; charset=utf-8'})
+        to_return(:status =>200, :body => "OK", :headers => {:content_type =>'text/html; charset=utf-8'})
       }
       it "start API session" do
         page = @agent.login("test-username","test-password")
@@ -51,7 +51,7 @@ HTML
 </table>
 HTML
         stub_request(:get, @endpoint + "/my/group").
-        to_return(:status =>200, :body => html, :headers => {content_type: 'text/html; charset=utf-8'})
+        to_return(:status =>200, :body => html, :headers => {:content_type =>'text/html; charset=utf-8'})
 
         (1..3).each { |n|
           html = <<HTML
@@ -59,7 +59,7 @@ HTML
 <span class="api-key">#{n}dummyapikey1234567890</span>
 HTML
           stub_request(:get, @endpoint + "/my/group/test-sg-#{n}/info").
-          to_return(:status =>200, :body => html, :headers => {content_type: 'text/html; charset=utf-8'})
+          to_return(:status =>200, :body => html, :headers => {:content_type =>'text/html; charset=utf-8'})
         }
       }
       it "returns list of groups" do
@@ -71,7 +71,3 @@ HTML
   end
   
 end
-
-
-
-
