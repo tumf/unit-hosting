@@ -61,9 +61,12 @@ module UnitHosting
       def unplugVif vif_uuid
         server_call("vm.unplugVif",{"vif_uuid" => vif_uuid})
       end
-
+      def set_vm_data(key,val)
+        server_call("vm.setVmData",{"key" =>key,"value" =>val})
+      end
+      def get_vm_data(key)
+        server_call("vm.getVmData",{"key" =>key})
+      end
     end
   end
 end
-
-
