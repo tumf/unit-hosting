@@ -16,5 +16,5 @@ gem 'rdoc'
 group :development do
   gem "shoulda", ">= 0"
   gem "bundler"
-  gem "jeweler", :git =>"git://github.com/emilsoman/jeweler.git"
+  gem "jeweler"
 end
