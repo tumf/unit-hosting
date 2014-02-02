@@ -14,17 +14,10 @@ group :development do
 end
 
 group :development,:test do
+  gem 'simplecov'
+  gem 'coveralls', require: false
   gem "bundler"
   gem 'rake'
   gem 'rspec'
   gem 'webmock'
 end
-
-
-
-
-
-
-
-
-

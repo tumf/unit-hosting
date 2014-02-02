@@ -4,3 +4,13 @@ require 'webmock/rspec'
 
 RSpec.configure do |config|
 end
+
+require 'simplecov'
+require 'coveralls'
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+  SimpleCov::Formatter::HTMLFormatter,
+  Coveralls::SimpleCov::Formatter
+]
+SimpleCov.start
+
+Coveralls.wear!
