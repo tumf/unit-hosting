@@ -39,7 +39,7 @@ module UnitHosting
     end
 
     def update
-      STDERR.puts "update #{instance_id}"
+      # STDERR.puts "update #{instance_id}"
       @vms = VmGroup.new(@instance_id,@key).vms
       self
     end
