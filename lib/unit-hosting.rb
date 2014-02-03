@@ -1,5 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
+require 'active_support/core_ext'
+require 'i18n'
 
 require "highline/import"
 require "keystorage"
