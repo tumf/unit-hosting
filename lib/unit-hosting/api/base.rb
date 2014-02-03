@@ -40,7 +40,9 @@ module UnitHosting
       def server_call(method,param = {})
         param["instance_id"] = @instance_id
         param["api_key"] = @api_key
-        return @server.call(method,param)
+        result = @server.call(method,param)
+        # puts @server.http_last_response.body
+        return result
       end
     end
   end
