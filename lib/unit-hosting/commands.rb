@@ -11,13 +11,15 @@ module UnitHosting
   class Commands < CommandLineUtils::Commands
     class ArgumentError < StandardError;end
     # CommandLineUtils::COMMANDS +=
-    attr_accessor :agent, :cache
+    attr_accessor :agent, :cache, :keyname
     def initialize endpoint =nil
+      @keyname = "unit-hosting"
+      @endpoint = endpoint
       @command_options = []
       super()
       @commands += ["login","logout","update","groups","group"]
       #@agent = Agent.new
-      @agent = Agent.new(endpoint)
+      @agent = Agent.new(@endpoint)
       @cache = nil
     end
 
@@ -28,28 +30,26 @@ module UnitHosting
     def login
       opt = OptionParser.new
       opt.parse!(@command_options)
-      @summery = "Login to https://cloud.unit-hosting.com ."
+      @summery = "Login to #{@endpoint} ."
       @banner = ""
       return opt if @help
 
-      user = ask('Enter user: ') do |q|
-        q.validate = /\w+/
-      end
-
       ok = false
       while(!ok) 
+        user = ask('Enter user: ') do |q|
+          q.validate = /\w+/
+        end
         password = ask("Enter your password: ") do |q|
           q.validate = /\w+/
           q.echo = false
         end
-
         @agent.login(user,password)
-        if @agent.login? # => OK
+        if @agent.login?
           ok = true
-          Keystorage.set("unit-hosting",user,password)
-          puts "login OK"
+          Keystorage.set(@keyname,user,password)
+          STDERR.puts "login OK"
         else
-          puts "password mismatch"
+          STDERR.puts "password mismatch"
         end
       end
     end
@@ -57,10 +57,10 @@ module UnitHosting
     def logout
       opt = OptionParser.new
       opt.parse!(@command_options)
-      @summery = "Logout from https://cloud.unit-hosting.com ."
+      @summery = "Logout from #{@endpoint} ."
       @banner = ""
       return opt if @help
-      Keystorage.delete("unit-hosting")
+      Keystorage.delete(@keyname)
     end
 
     include UnitHosting::Api
@@ -115,10 +115,10 @@ module UnitHosting
     private
     def start
       return true if @agent.login?
-      user =  Keystorage.list("unit-hosting").shift
+      user =  Keystorage.list(@keyname).shift
       login unless user
       if user
-        @agent.login(user,Keystorage.get("unit-hosting",user))
+        @agent.login(user,Keystorage.get(@keyname,user))
         login unless @agent.login?
       end
     end

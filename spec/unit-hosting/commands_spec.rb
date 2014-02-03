@@ -5,7 +5,7 @@ describe UnitHosting::Commands do
   before {
     @endpoint = "https://example.net"
     @commands = UnitHosting::Commands.new(@endpoint)
-
+    @commands.keyname = "rspec-unit-hosting-test"
     @cache_file = Tempfile.new('cache')
     @commands.stub(:cache_file).and_return(@cache_file.path)
   }
@@ -13,7 +13,56 @@ describe UnitHosting::Commands do
     @cache_file.close
     @cache_file.unlink
   }
+  describe "#login" do
+    before{
+      @commands.agent.stub(:login).and_return(nil)
+      @user1 = { :username =>"test-user-1", :password =>"correct-for-1", :bad_password =>"bad-for-1"}
+      expect(Keystorage).to receive(:set).
+      with(@commands.keyname,@user1[:username],@user1[:password]).once
+    }
+    context "put collect username and password." do
+      before {
+        @commands.agent.stub(:login?).and_return(true)
+      }
+      context "answer collect username and password" do
+        before {
+        }
+        it "returns true." do
+          expect(@commands).to receive(:ask).
+            with("Enter user: ").and_return(@user1[:username]).once
+          expect(@commands).to receive(:ask).
+            with("Enter your password: ").and_return(@user1[:password]).once
+          STDERR.should_receive(:puts).with("login OK").once
+          @commands.login
+        end
+      end
+      
+    end
+    context "put bad pair of username and password." do
+      before{
+        @commands.agent.stub(:login?).and_return(false,true)
+      }
+      it "asks username and password again." do
+        STDERR.should_receive(:puts).with("login OK").once
+        STDERR.should_receive(:puts).with("password mismatch").once
+        expect(@commands).to receive(:ask).
+          with("Enter user: ").and_return(@user1[:username]).twice
+        expect(@commands).to receive(:ask).
+          with("Enter your password: ").and_return(@user1[:password]).twice
+        @commands.login
+      end
+    end
+  end
+  
+  describe "#logout" do
 
+  end
+  describe "#groups" do
+    
+  end
+  describe "#group" do
+    
+  end
   describe "#update" do
     before {
       # @commands.should_receive(:start)
