@@ -11,7 +11,7 @@ This is a command to manage virtual servers on UnitHosting(http://www.unit-hosti
 
 Ruby versions 1.8.7, 1.9.2, 1.9.3, 2.0.0
 
-> ** GitHub **
+> **GitHub**
 > https://github.com/tumf/unit-hosting
 
 
