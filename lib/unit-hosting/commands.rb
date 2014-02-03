@@ -9,14 +9,20 @@ require "unit-hosting/cache"
 
 module UnitHosting
   class Commands < CommandLineUtils::Commands
-    # CommandLineUtils::COMMANDS += 
-    def initialize
-      super
+    class ArgumentError < StandardError;end
+    # CommandLineUtils::COMMANDS +=
+    attr_accessor :agent, :cache
+    def initialize endpoint =nil
+      @command_options = []
+      super()
       @commands += ["login","logout","update","groups","group"]
-      @agent = Agent.new
-      @cache_file =  ENV['HOME']+"/.unit-hosting.cache"
-      @cache = Cache.new(@cache_file)
+      #@agent = Agent.new
+      @agent = Agent.new(endpoint)
+      @cache = nil
+    end
 
+    def cache
+      @cache ||= Cache.new(cache_file)
     end
 
     def login
@@ -58,8 +64,7 @@ module UnitHosting
     end
 
     include UnitHosting::Api
-    def update
-      all = false
+    def update all = false
       opt = OptionParser.new
       opt.on('-a','--all', 'update all cache') { all = true }
       opt.parse!(@command_options)
@@ -68,31 +73,13 @@ module UnitHosting
       return opt if @help
       gid = @command_options.shift
 
-
       start
-      gs = @agent.groups.collect { |g|
-        unless g.key.empty?
-          v = @cache.groups.find{ |c| c.instance_id == g.instance_id }
-          v.update if v and v.vms == nil
-          g.vms = v.vms if v
-          g
-        end
-      }.compact
-      @cache.transaction { |ps|
-        if all
-          ps["groups"] = gs.find_all { |g|
-            !g.key.empty?
-          }.extend(Groups).update
-        else
-          group = ask_group(gid,gs)
-          ps["groups"] = gs.collect{ |g|
-            unless g.key.empty?
-              g.update if g.instance_id == group.instance_id
-              g
-            end
-          }.compact.extend(Groups)
-        end
-      }
+      if all
+        cache.update_all_groups!(@agent.groups)
+      else
+        group = ask_group(gid,cache.groups)
+        cache.update_group!(group)
+      end
     end
 
     def groups
@@ -102,7 +89,7 @@ module UnitHosting
       @banner = ""
       return opt if @help
 
-      puts @cache.groups.tablize
+      puts cache.groups.tablize
     end
 
     def group
@@ -113,7 +100,7 @@ module UnitHosting
       return opt if @help
 
       id = @command_options.shift
-      group = ask_group(id,@cache.groups)
+      group = ask_group(id,cache.groups)
       puts group.tablize if group
     end
 
@@ -139,16 +126,18 @@ module UnitHosting
     def ask_group(id,gs)
       unless id
         puts gs.extend(Groups).tablize
-        id = ask('Enter group id ([q]uit): ',gs.ids << 'q') { |q|
+        id = ask('Enter group id: ',gs.ids) { |q|
           q.validate = /\w+/
           q.readline = true
         }
       end
-      raise SystemExit if id == "q"
       group = gs.find { |g| id == g.instance_id  }
-      raise "Group #{id} is not exists." unless group
+      raise ArgumentError,"Group #{id} is not exists." unless group
       group
     end
 
+    def cache_file file = ".unit-hosting.cache"
+      File.join ENV['HOME'],file
+    end
   end
 end
