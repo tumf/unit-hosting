@@ -7,11 +7,11 @@ Unit Hosting support libs for Ruby
 [![Dependency Status](https://gemnasium.com/tumf/unit-hosting.png)](https://gemnasium.com/tumf/unit-hosting)
 [![Coverage Status](https://coveralls.io/repos/tumf/unit-hosting/badge.png?branch=master)](https://coveralls.io/r/tumf/unit-hosting?branch=master)
 
-This is a command to manage virtual servers on UnitHosting(http://www.unit-hosting.com).
+This is a command to manage virtual servers on [UnitHosting](http://www.unit-hosting.com).
 
 Ruby versions 1.8.7, 1.9.2, 1.9.3, 2.0.0
 
-> ** GitHub **
+> **GitHub**
 > https://github.com/tumf/unit-hosting
 
 
