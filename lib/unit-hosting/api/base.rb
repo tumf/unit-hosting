@@ -8,7 +8,8 @@ module UnitHosting
     end
     module_function :keypath
     class Base
-      attr_reader :instance_id,:api_key;
+      attr_reader :instance_id,:api_key
+      attr_accessor :server
       def initialize(instance_id=nil,api_key=nil)
         @instance_id = instance_id
         @api_key = api_key
