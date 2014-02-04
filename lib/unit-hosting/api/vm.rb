@@ -10,6 +10,15 @@ module UnitHosting
         @api_key_elm = '/server/key'
         super
       end
+
+      def to_api(name)
+        "vm.#{name}"
+      end
+      
+      def method_missing(name, *args)
+        server_call(to_api(name),args)
+      end
+      
       def reboot
         server_call("vm.reboot")
       end

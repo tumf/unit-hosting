@@ -6,6 +6,13 @@ describe UnitHosting::Api::Vm do
   before {
     @vm = UnitHosting::Api::Vm.new("test-vm-1","test-1-dummy-key")
   }
+  describe "#foo" do
+    it "calls Base::server_call('vm.foo')" do
+      expect(@vm).to receive(:server_call).with("vm.foo",[])
+      @vm.foo
+    end
+  end
+      
   describe "#reboot" do
     it "calls Base::server_call('vm.reboot')" do
       expect(@vm).to receive(:server_call).with("vm.reboot")
