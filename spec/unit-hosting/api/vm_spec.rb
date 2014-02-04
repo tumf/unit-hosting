@@ -11,6 +11,10 @@ describe UnitHosting::Api::Vm do
       expect(@vm).to receive(:server_call).with("vm.foo")
       @vm.foo
     end
+    it "calls Base::server_call('vm.foo','var' =>'val')" do
+      expect(@vm).to receive(:server_call).with("vm.foo",'var' =>'val')
+      @vm.foo "var"=>"val"
+    end
   end
       
   describe "#reboot" do

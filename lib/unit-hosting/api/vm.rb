@@ -26,7 +26,7 @@ module UnitHosting
         if args.blank?
           server_call(to_api(name))
         else
-          server_call(to_api(name),args)
+          server_call(to_api(name),*args)
         end
       end
 
