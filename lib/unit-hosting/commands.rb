@@ -88,8 +88,7 @@ module UnitHosting
       @summery = "List sever groups."
       @banner = ""
       return opt if @help
-
-      puts cache.groups.tablize
+      puts cache.groups.try(:tablize)
     end
 
     def group

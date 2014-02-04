@@ -7,7 +7,7 @@ module UnitHosting
   class Cache < PStore
     def groups
       transaction { |ps|
-        ps["groups"] ||= []
+        ps["groups"] ||= [].extend(UnitHosting::Groups)
       }
     end
     

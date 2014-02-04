@@ -55,13 +55,25 @@ describe UnitHosting::Commands do
   end
   
   describe "#logout" do
-
+    it "removes Keychain entry." do
+      expect(Keystorage).to receive(:delete).with(@commands.keyname).once
+      @commands.logout
+    end
   end
+  
   describe "#groups" do
-    
+    it "returns groups." do
+      expect(@commands.cache).to receive(:groups).with().once
+      expect(STDOUT).to receive(:puts).once
+      @commands.groups
+    end
   end
+  
   describe "#group" do
-    
+    it "asks group andreturns group." do
+      expect(@commands).to receive(:ask_group).once
+      @commands.group
+    end
   end
   describe "#update" do
     before {
