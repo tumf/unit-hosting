@@ -69,5 +69,50 @@ HTML
         
     end
   end
-  
+
+  describe "#logout" do
+    before {
+      stub_request(:get, @endpoint + "/logout").
+      to_return(:status =>200, :body => "", :headers => {:content_type =>'text/html; charset=utf-8'})
+    }
+    it "get /logout" do
+      @agent.logout
+    end
+  end
+  describe "#login?" do
+    context "when logged in" do
+      before {
+        stub_request(:get, @endpoint + "/dashboard").
+        to_return(:status =>200, :body => <<HTML, :headers => {:content_type =>'text/html; charset=utf-8'})
+<html>
+ログアウト
+</html>
+HTML
+
+      }
+      it "returns true" do
+        expect(@agent.login?).to be_true
+      end
+    end
+    
+    context "when not logged in" do
+      before {
+        stub_request(:get, @endpoint + "/dashboard").
+        to_return(:status =>200, :body => <<HTML, :headers => {:content_type =>'text/html; charset=utf-8'})
+<html>
+ログイン
+</html>
+HTML
+      }
+      it "returns true" do
+        expect(@agent.login?).to be_false
+      end
+    end
+    
+  end
 end
+
+
+
+
+
