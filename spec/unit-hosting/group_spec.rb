@@ -3,6 +3,17 @@ require 'spec_helper'
 require 'unit-hosting/group'
 
 describe UnitHosting::Groups do
+  before {
+    @groups = [
+               UnitHosting::Group.new("test-sg-123"),
+               UnitHosting::Group.new("test-sg-789"),
+              ].extend(UnitHosting::Groups)
+  }
+  describe "#ids" do
+    it "returns array of instance_id" do
+     expect(@groups.ids).to eq ["test-sg-123","test-sg-789"]
+    end
+  end
   describe "#tablize" do
     context "no groups" do
       before {
@@ -13,12 +24,6 @@ describe UnitHosting::Groups do
       end
     end
     context "have 2 groups" do
-      before {
-        @groups = [
-                   UnitHosting::Group.new("test-sg-123"),
-                   UnitHosting::Group.new("test-sg-789"),
-                  ].extend(UnitHosting::Groups)
-      }
       it "returns table string" do
         expect(@groups.tablize).to match /test-sg-789/
       end
