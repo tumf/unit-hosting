@@ -8,7 +8,7 @@ describe UnitHosting::Api::Vm do
   }
   describe "#foo" do
     it "calls Base::server_call('vm.foo')" do
-      expect(@vm).to receive(:server_call).with("vm.foo",[])
+      expect(@vm).to receive(:server_call).with("vm.foo")
       @vm.foo
     end
   end

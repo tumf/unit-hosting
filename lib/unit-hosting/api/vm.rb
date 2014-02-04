@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
+require 'active_support/inflector'
 require 'unit-hosting/api/base'
 
 module UnitHosting
@@ -16,23 +17,12 @@ module UnitHosting
       end
       
       def method_missing(name, *args)
-        server_call(to_api(name),args)
-      end
-      
-      def reboot
-        server_call("vm.reboot")
-      end
-      def start
-        server_call("vm.start")
-      end
-      def shutdown
-        server_call("vm.shutdown")
-      end
-      def power_off
-        server_call("vm.powerOff")
-      end
-      def destroy
-        server_call("vm.destroy")
+        name = name.to_s.camelize(:lower)
+        if args.blank?
+          server_call(to_api(name))
+        else
+          server_call(to_api(name),args)
+        end
       end
       def status?
         server_call("vm.getStatus")
