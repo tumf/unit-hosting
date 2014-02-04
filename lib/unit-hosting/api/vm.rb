@@ -17,27 +17,24 @@ module UnitHosting
       end
       
       def method_missing(name, *args)
-        name = name.to_s.camelize(:lower)
+        name = name.to_s
+        name = if /(.*)\?$/ =~ name
+                 "get#{$1.camelize}"
+               else
+                 name.camelize(:lower)
+               end
         if args.blank?
           server_call(to_api(name))
         else
           server_call(to_api(name),args)
         end
       end
-      def status?
-        server_call("vm.getStatus")
-      end
+
       def memory_unit_size size
         server_call("vm.setMemoryUnitSize",{"size" => size})
       end
       def cpu_unit_num num
         server_call("vm.setCpuUnitNum",{"num" => num})
-      end
-      def memory_unit_size?
-        server_call("vm.getMemoryUnitSize")
-      end
-      def cpu_unit_num?
-        server_call("vm.getCpuUnitNum")
       end
       def ips
         server_call("vm.getIpInfo")
