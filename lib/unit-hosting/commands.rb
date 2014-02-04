@@ -47,9 +47,9 @@ module UnitHosting
         if @agent.login?
           ok = true
           Keystorage.set(@keyname,user,password)
-          STDERR.puts "login OK"
+          $stderr.puts "login OK"
         else
-          STDERR.puts "password mismatch"
+          $stderr.puts "password mismatch"
         end
       end
     end
@@ -88,7 +88,7 @@ module UnitHosting
       @summery = "List sever groups."
       @banner = ""
       return opt if @help
-      puts cache.groups.try(:tablize)
+      STDOUT.puts cache.groups.try(:tablize)
     end
 
     def group

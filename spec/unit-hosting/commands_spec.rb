@@ -32,7 +32,7 @@ describe UnitHosting::Commands do
             with("Enter user: ").and_return(@user1[:username]).once
           expect(@commands).to receive(:ask).
             with("Enter your password: ").and_return(@user1[:password]).once
-          STDERR.should_receive(:puts).with("login OK").once
+          $stderr.should_receive(:puts).with("login OK").once
           @commands.login
         end
       end
@@ -43,8 +43,8 @@ describe UnitHosting::Commands do
         @commands.agent.stub(:login?).and_return(false,true)
       }
       it "asks username and password again." do
-        STDERR.should_receive(:puts).with("login OK").once
-        STDERR.should_receive(:puts).with("password mismatch").once
+        $stderr.should_receive(:puts).with("login OK").once
+        $stderr.should_receive(:puts).with("password mismatch").once
         expect(@commands).to receive(:ask).
           with("Enter user: ").and_return(@user1[:username]).twice
         expect(@commands).to receive(:ask).
@@ -64,7 +64,7 @@ describe UnitHosting::Commands do
   describe "#groups" do
     it "returns groups." do
       expect(@commands.cache).to receive(:groups).with().once
-      expect(STDOUT).to receive(:puts).once
+      expect($stdout).to receive(:puts).once
       @commands.groups
     end
   end
