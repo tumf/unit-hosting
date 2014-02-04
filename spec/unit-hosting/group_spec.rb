@@ -3,12 +3,32 @@ require 'spec_helper'
 require 'unit-hosting/group'
 
 describe UnitHosting::Groups do
-
+  describe "#tablize" do
+    context "no groups" do
+      before {
+        @groups = [].extend(UnitHosting::Groups)
+      }
+      it "returns 'no groups'" do
+        expect(@groups.tablize).to match /no groups/
+      end
+    end
+    context "have 2 groups" do
+      before {
+        @groups = [
+                   UnitHosting::Group.new("test-sg-123"),
+                   UnitHosting::Group.new("test-sg-789"),
+                  ].extend(UnitHosting::Groups)
+      }
+      it "returns table string" do
+        expect(@groups.tablize).to match /test-sg-789/
+      end
+    end    
+  end
 end
 
 describe UnitHosting::Group do
   before {
-    @group = UnitHosting::Group.new
+    @group = UnitHosting::Group.new("test-sg-123")
   }
   describe "#tablize" do
     context "no vms" do

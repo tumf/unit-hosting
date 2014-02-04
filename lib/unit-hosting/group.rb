@@ -13,6 +13,7 @@ module UnitHosting
     end
 
     def tablize
+      return "no groups" if length == 0
       table = Mutter::Table.new(:delimiter => '|') do
         column :style => :green
         column
