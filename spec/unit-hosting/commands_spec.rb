@@ -7,10 +7,10 @@ describe UnitHosting::Commands do
     @commands = UnitHosting::Commands.new(@endpoint)
     @commands.keyname = "rspec-unit-hosting-test"
     @cache_file = Tempfile.new('cache')
+    @cache_file.close
     @commands.stub(:cache_file).and_return(@cache_file.path)
   }
   after {
-    @cache_file.close
     @cache_file.unlink
   }
   describe "#login" do
