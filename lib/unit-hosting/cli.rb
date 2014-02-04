@@ -3,6 +3,7 @@
 require 'unit-hosting/commands'
 module UnitHosting
   class CLI < CommandLineUtils::CLI
+    attr_accessor :commands
     def initialize
       super
       @commands = Commands.new
