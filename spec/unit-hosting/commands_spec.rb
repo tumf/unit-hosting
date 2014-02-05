@@ -182,7 +182,24 @@ XML
     end
   end
   describe "#ask_group" do
-    
+    before{
+      @groups = ['test-sg-1','test-sg-2','test-sg-3','test-123'].extend(UnitHosting::Groups)
+      @groups = ['test-sg-1','test-sg-2','test-sg-3','test-123'].extend(UnitHosting::Groups)
+      class HighLine
+        def ask( question, answer_type = String, &details ) # :yields: question
+          @question ||= Question.new(question, answer_type, &details)
+          "test-sg-2"
+       end
+     end
+    }
+    context "when group_id is not given" do
+      it "asks group_id" do
+        groups = [UnitHosting::Group.new('test-sg-1'),
+                  UnitHosting::Group.new('test-sg-2'),
+                  UnitHosting::Group.new('test-sg-3')].extend(UnitHosting::Groups)
+        expect(@commands.send(:ask_group,nil,groups).instance_id).to eq "test-sg-2"
+      end
+    end
   end
   describe "#cache_file" do
     it "returns cache file path" do
