@@ -10,7 +10,8 @@ require "unit-hosting/cache"
 module UnitHosting
   class Commands < CommandLineUtils::Commands
     class ArgumentError < StandardError;end
-    class LoginError < StandardError; end
+    class LoginError < ArgumentError; end
+    class GroupNotFound < ArgumentError; end
     # CommandLineUtils::COMMANDS +=
     attr_accessor :agent, :cache, :keyname
     def initialize endpoint =nil
@@ -133,7 +134,7 @@ module UnitHosting
         }
       end
       group = gs.find { |g| id == g.instance_id  }
-      raise ArgumentError,"Group #{id} is not exists." unless group
+      raise GroupNotFound,"Group #{id} is not exists." unless group
       group
     end
 
