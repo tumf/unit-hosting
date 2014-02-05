@@ -20,6 +20,7 @@ module UnitHosting
         vms.each do |vm|
           return vm["api_key"] if vm["instance_id"] == instance_id
         end
+        nil #missing
       end
       # instance_idに紐づくvmを返す
       def vm(instance_id)
