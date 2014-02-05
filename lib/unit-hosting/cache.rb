@@ -19,10 +19,11 @@ module UnitHosting
 
     def update_group! group
       transaction { |ps|
-        g = ps["groups"].find { |g|
+        groups = ps["groups"].reject { |g|
           g.instance_id == group.instance_id
-        }.try(:update)
-        ps["groups"] << group.update  unless g
+        }
+        groups << group.update
+        ps["groups"] = groups
       }
     end
 
