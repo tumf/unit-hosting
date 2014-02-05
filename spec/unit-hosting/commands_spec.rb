@@ -6,12 +6,6 @@ describe UnitHosting::Commands do
     @endpoint = "https://example.net"
     @commands = UnitHosting::Commands.new(@endpoint)
     @commands.keyname = "rspec-unit-hosting-test"
-    @cache_file = Tempfile.new('cache')
-    @cache_file.close
-    @commands.stub(:cache_file).and_return(@cache_file.path)
-  }
-  after {
-    @cache_file.unlink
   }
   describe "#login" do
     before{
@@ -76,9 +70,14 @@ describe UnitHosting::Commands do
     end
   end
   describe "#update" do
-    before {
-      # @commands.should_receive(:start)
+    before{
+      @cache_file = Tempfile.new('cache')
+      @cache_file.close
+      @commands.stub(:cache_file).and_return(@cache_file.path)
       @commands.stub(:start).and_return true
+    }
+    after {
+      @cache_file.unlink
     }
     context "when --all is set" do
       before{
@@ -131,6 +130,64 @@ XML
         @commands.update
       end
     end
+  end
+
+  describe "#start" do
+    context "when still logged in" do
+      before{
+        @commands.agent.stub(:login?).and_return(true)
+      }
+      it "returns true" do
+        expect(@commands.send(:start)).to be_true
+      end
+    end
+    context "failed login" do
+      before{
+        @commands.agent.stub(:login?).and_return(false)
+        @commands.agent.stub(:login).and_return()
+        expect(@commands).to receive(:login)
+      }
+      it "raises LoginError exception." do
+        expect{
+          @commands.send(:start)
+        }.to raise_error(UnitHosting::Commands::LoginError)
+      end
+    end
+    context "when not logged in" do
+      before{
+        @commands.agent.stub(:login?).and_return(false,true)
+      }
+      context "when there is a user-entry in keystorage" do
+        before {
+          Keystorage.stub(:list).and_return(["test-user-1"])
+          Keystorage.stub(:get).with(@commands.keyname,"test-user-1").and_return("test-password-1")
+        }
+        it "try to login by using username" do
+          expect(@commands.agent).to receive(:login).with("test-user-1","test-password-1").once
+          @commands.send(:start)
+        end
+      end
+      context "when there is no user-entry in keystorage" do
+        before {
+          Keystorage.stub(:list).and_return([])
+        }
+        it "asks username" do
+          expect(@commands).to receive(:login)
+          @commands.send(:start)
+        end
+      end
+      #it "returns true" do
+      #   expect(@commands.send(:start)).to be_true
+      #end
+    end
+  end
+  describe "#ask_group" do
     
   end
+  describe "#cache_file" do
+    it "returns cache file path" do
+      expect(@commands.send(:cache_file,"foo.cache")).to match /foo\.cache$/
+    end
+  end
+  
 end

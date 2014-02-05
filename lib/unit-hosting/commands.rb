@@ -10,6 +10,7 @@ require "unit-hosting/cache"
 module UnitHosting
   class Commands < CommandLineUtils::Commands
     class ArgumentError < StandardError;end
+    class LoginError < StandardError; end
     # CommandLineUtils::COMMANDS +=
     attr_accessor :agent, :cache, :keyname
     def initialize endpoint =nil
@@ -114,14 +115,15 @@ module UnitHosting
     private
     def start
       return true if @agent.login?
-      user =  Keystorage.list(@keyname).shift
+      
+      user = Keystorage.list(@keyname).shift
       login unless user
       if user
         @agent.login(user,Keystorage.get(@keyname,user))
         login unless @agent.login?
       end
+      raise LoginError,"Can't start session" unless @agent.login?
     end
-
     def ask_group(id,gs)
       unless id
         puts gs.extend(Groups).tablize
