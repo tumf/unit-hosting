@@ -194,6 +194,7 @@ XML
     }
     context "when group_id is not given" do
       it "asks group_id" do
+        expect($stdout).to receive(:puts)
         groups = [UnitHosting::Group.new('test-sg-1'),
                   UnitHosting::Group.new('test-sg-2'),
                   UnitHosting::Group.new('test-sg-3')].extend(UnitHosting::Groups)
