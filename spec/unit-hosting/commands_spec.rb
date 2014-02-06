@@ -19,24 +19,17 @@ describe UnitHosting::Commands do
         @commands.agent.stub(:login?).and_return(true)
       }
       context "answer collect username and password" do
-        before {
-          class HighLine
-            def ask( question, answer_type = String, &details ) # :yields: question
-              @question ||= Question.new(question, answer_type, &details)
-              case question
-              when "Enter user: "
-                "test-user-1"
-              when "Enter your password: "
-                "correct-for-1"
-              end
-            end
-          end
-        }
+        before { }
         it "returns true." do
-          #expect(@commands).to receive(:ask).
-          #  with("Enter user: ").and_return(@user1[:username]).once
-          #expect(@commands).to receive(:ask).
-          #  with("Enter your password: ").and_return(@user1[:password]).once
+          @commands.stub(:ask) { |question, answer_type = String, &details|
+            HighLine::Question.new(question, answer_type, &details)
+            case question
+            when "Enter user: "
+              "test-user-1"
+            when "Enter your password: "
+              "correct-for-1"
+            end
+          }
           $stderr.should_receive(:puts).with("login OK").once
           @commands.login
         end
@@ -196,12 +189,10 @@ XML
     before{
       @groups = ['test-sg-1','test-sg-2','test-sg-3','test-123'].extend(UnitHosting::Groups)
       @groups = ['test-sg-1','test-sg-2','test-sg-3','test-123'].extend(UnitHosting::Groups)
-      class HighLine
-        def ask( question, answer_type = String, &details ) # :yields: question
-          @question ||= Question.new(question, answer_type, &details)
-          "test-sg-2"
-       end
-     end
+      @commands.stub(:ask) { |question, answer_type = String, &details|
+        HighLine::Question.new(question, answer_type, &details)
+        "test-sg-2"
+      }
     }
     context "when group_id is not given" do
       it "asks group_id" do
