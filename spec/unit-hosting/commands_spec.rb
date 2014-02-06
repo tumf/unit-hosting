@@ -3,6 +3,7 @@ require 'spec_helper'
 require 'unit-hosting/commands'
 describe UnitHosting::Commands do
   before {
+    $stdout.stub(:puts).and_return(nil)
     @endpoint = "https://example.net"
     @commands = UnitHosting::Commands.new(@endpoint)
     @commands.keyname = "rspec-unit-hosting-test"
@@ -21,8 +22,8 @@ describe UnitHosting::Commands do
       context "answer collect username and password" do
         before { }
         it "returns true." do
-          @commands.stub(:ask) { |question, answer_type = String, &details|
-            HighLine::Question.new(question, answer_type, &details)
+          @commands.stub(:ask) { |question, &details|
+            HighLine::Question.new(question, String, &details)
             case question
             when "Enter user: "
               "test-user-1"
@@ -189,14 +190,13 @@ XML
     before{
       @groups = ['test-sg-1','test-sg-2','test-sg-3','test-123'].extend(UnitHosting::Groups)
       @groups = ['test-sg-1','test-sg-2','test-sg-3','test-123'].extend(UnitHosting::Groups)
-      @commands.stub(:ask) { |question, answer_type = String, &details|
-        HighLine::Question.new(question, answer_type, &details)
+      @commands.stub(:ask) { |question, &details|
+        HighLine::Question.new(question, String, &details)
         "test-sg-2"
       }
     }
     context "when group_id is not given" do
       it "asks group_id" do
-        expect($stdout).to receive(:puts)
         groups = [UnitHosting::Group.new('test-sg-1'),
                   UnitHosting::Group.new('test-sg-2'),
                   UnitHosting::Group.new('test-sg-3')].extend(UnitHosting::Groups)
