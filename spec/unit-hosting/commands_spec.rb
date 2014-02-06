@@ -20,12 +20,23 @@ describe UnitHosting::Commands do
       }
       context "answer collect username and password" do
         before {
+          class HighLine
+            def ask( question, answer_type = String, &details ) # :yields: question
+              @question ||= Question.new(question, answer_type, &details)
+              case question
+              when "Enter user: "
+                "test-user-1"
+              when "Enter your password: "
+                "correct-for-1"
+              end
+            end
+          end
         }
         it "returns true." do
-          expect(@commands).to receive(:ask).
-            with("Enter user: ").and_return(@user1[:username]).once
-          expect(@commands).to receive(:ask).
-            with("Enter your password: ").and_return(@user1[:password]).once
+          #expect(@commands).to receive(:ask).
+          #  with("Enter user: ").and_return(@user1[:username]).once
+          #expect(@commands).to receive(:ask).
+          #  with("Enter your password: ").and_return(@user1[:password]).once
           $stderr.should_receive(:puts).with("login OK").once
           @commands.login
         end
