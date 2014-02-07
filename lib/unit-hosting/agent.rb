@@ -4,9 +4,10 @@ require "mechanize"
 require "unit-hosting/group"
 module UnitHosting
   class Agent < Mechanize
-    def initialize endpoint = nil
-      @endpoint = endpoint || "https://cloud.unit-hosting.com"
-      super()
+    attr_accessor :endpoint
+    def initialize
+      super
+      @endpoint = "https://cloud.unit-hosting.com"
       max_history = 0
     end
 

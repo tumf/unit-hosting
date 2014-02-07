@@ -11,7 +11,8 @@ describe UnitHosting::Agent do
   end
   before {
     @endpoint = "https://example.net"
-    @agent = UnitHosting::Agent.new(@endpoint)
+    @agent = UnitHosting::Agent.new
+    @agent.endpoint = @endpoint
   }
   describe "#login" do
     before {

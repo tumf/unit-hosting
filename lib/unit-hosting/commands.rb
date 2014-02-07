@@ -20,8 +20,8 @@ module UnitHosting
       @command_options = []
       super()
       @commands += ["login","logout","update","groups","group"]
-      #@agent = Agent.new
-      @agent = Agent.new(@endpoint)
+      @agent = Agent.new
+      @agent.endpoint = @endpoint
       @cache = nil
     end
 
