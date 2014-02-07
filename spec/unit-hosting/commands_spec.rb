@@ -188,7 +188,6 @@ XML
   describe "#ask_group" do
     before{
       @groups = ['test-sg-1','test-sg-2','test-sg-3','test-123'].extend(UnitHosting::Groups)
-      @groups = ['test-sg-1','test-sg-2','test-sg-3','test-123'].extend(UnitHosting::Groups)
       @commands.stub(:ask) { |question, &details|
         HighLine::Question.new(question, String, &details)
         "test-sg-2"
