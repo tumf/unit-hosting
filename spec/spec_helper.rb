@@ -16,7 +16,7 @@ SimpleCov.start
 
 Coveralls.wear!
 
-  
+# http://qiita.com/gokoku_h/items/5e6903a240abc8a5cac6
 require 'stringio'
 def capture(stream)
   begin
