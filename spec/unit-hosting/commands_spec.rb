@@ -3,7 +3,6 @@ require 'spec_helper'
 require 'unit-hosting/commands'
 describe UnitHosting::Commands do
   before {
-    $stdout.stub(:puts).and_return(nil)
     @endpoint = "https://example.net"
     @commands = UnitHosting::Commands.new(@endpoint)
     @commands.keyname = "rspec-unit-hosting-test"
@@ -200,7 +199,10 @@ XML
         groups = [UnitHosting::Group.new('test-sg-1'),
                   UnitHosting::Group.new('test-sg-2'),
                   UnitHosting::Group.new('test-sg-3')].extend(UnitHosting::Groups)
-        expect(@commands.send(:ask_group,nil,groups).instance_id).to eq "test-sg-2"
+        expect(capture(:stdout) {
+                 expect(@commands.send(:ask_group,nil,groups).instance_id).to eq "test-sg-2"
+                 }).to match /test\-sg\-3/
+
       end
     end
   end
