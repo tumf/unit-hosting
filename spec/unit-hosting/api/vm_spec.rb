@@ -133,4 +133,16 @@ describe UnitHosting::Api::Vm do
       @vm.get_vm_data "test-key-1"
     end
   end
+  describe "#set_pv_args" do
+    it "calls Base::server_call('vm.setPvArgs')" do
+      expect(@vm).to receive(:server_call).with("vm.setPvArgs","pv_args" =>"test-args-1")
+      @vm.set_pv_args "test-args-1"
+    end
+  end
+  describe "#get_pv_args" do
+    it "calls Base::server_call('vm.getPvArgs')" do
+      expect(@vm).to receive(:server_call).with("vm.setPvArgs","pv_args" =>"test-args-1")
+      @vm.set_pv_args "test-args-1"
+    end
+  end
 end

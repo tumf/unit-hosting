@@ -63,6 +63,12 @@ module UnitHosting
       def get_vm_data(key)
         server_call("vm.getVmData",{"key" =>key})
       end
+      def set_pv_args(val)
+        server_call("vm.setPvArgs",{"pv_args" =>val})
+      end
+      def get_pv_args
+        server_call("vm.getPvArgs")
+      end
     end
   end
 end
